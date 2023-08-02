@@ -8,6 +8,7 @@ const postRoute = require("./routes/posts");
 const categoryRoute = require("./routes/categories");
 const multer = require("multer");
 const path = require("path");
+const cors = require("cors"); // Import the cors package
 
 dotenv.config();
 app.use(express.json());
@@ -31,6 +32,10 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage });
+
+// Use the cors middleware to enable CORS for all routes
+app.use(cors());
+
 app.post("/api/upload", upload.single("file"), (req, res) => {
   res.status(200).json("File has been uploaded");
 });
