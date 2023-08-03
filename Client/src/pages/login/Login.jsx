@@ -8,17 +8,18 @@ export default function Login() {
   const userRef = useRef();
   const passwordRef = useRef();
   const { dispatch, isFetching } = useContext(Context);
-
+  const Url = process.env.REACT_APP_URL
   const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch({ type: "LOGIN_START" });
     try {
-      const res = await axios.post("/auth/login", {
+      const res = await axios.post(`${Url}/auth/login`, {
         username: userRef.current.value,
         password: passwordRef.current.value,
       });
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
     } catch (err) {
+      console.log(err);
       dispatch({ type: "LOGIN_FAILURE" });
     }
   };

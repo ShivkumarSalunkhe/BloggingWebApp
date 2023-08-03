@@ -5,10 +5,10 @@ import "./sidebar.css";
 
 export default function Sidebar() {
   const [cats, setCats] = useState([]);
-
+  const Url = process.env.REACT_APP_URL
   useEffect(() => {
     const getCats = async () => {
-      const res = await axios.get("/categories");
+      const res = await axios.get(`${Url}/categories`);
       setCats(res.data);
     };
     getCats();

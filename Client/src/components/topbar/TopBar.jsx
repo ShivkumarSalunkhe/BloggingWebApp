@@ -5,7 +5,8 @@ import "./topbar.css";
 
 export default function TopBar() {
   const { user, dispatch } = useContext(Context);
-  const PF = "http://localhost:5000/images/"
+  const Url = process.env.REACT_APP_URL
+  const PF = `${Url}/images/`
 
   const handleLogout = () => {
     dispatch({ type: "LOGOUT" });
